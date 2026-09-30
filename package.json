@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "description": "Review a browser page and hand it to Emacs org-protocol. Not a browser-store or npm package.",
+  "license": "GPL-3.0-or-later",
+  "author": "Jai G",
   "type": "module",
   "engines": { "node": ">=20" },
   "scripts": {

@@ -240,7 +240,7 @@ There is no telemetry, no network fetch, and no capture database inside the exte
 
 ## License
 
-No license file is included. Publishing this repository does not grant an open-source license.
+Copyright (C) 2026 Jai G. [GPL-3.0 or any later version](LICENSE), the same grant as [emacs-grep-a-lot](https://github.com/jaig-in/emacs-grep-a-lot).
 
 ## References
 
