@@ -1,0 +1,12 @@
+{
+  "name": "org-protocol-capture",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Review a browser page and hand it to Emacs org-protocol. Not a browser-store or npm package.",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test"
+  }
+}

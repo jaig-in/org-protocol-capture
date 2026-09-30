@@ -1,0 +1,27 @@
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+import test from 'node:test';
+
+function pngSize(bytes) {
+  assert.equal(bytes.subarray(1, 4).toString('latin1'), 'PNG');
+  const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+  return { width: view.getUint32(16), height: view.getUint32(20) };
+}
+
+for (const browser of ['chrome', 'firefox']) {
+  test(`${browser} manifest points at real icon files`, async () => {
+    const manifestUrl = new URL(`../manifests/${browser}.json`, import.meta.url);
+    const manifest = JSON.parse(await readFile(manifestUrl, 'utf8'));
+    assert.deepEqual(
+      Object.keys(manifest.icons).sort(),
+      ['128', '16', '32', '48'],
+    );
+    assert.deepEqual(manifest.action.default_icon, manifest.icons);
+    for (const [size, file] of Object.entries(manifest.icons)) {
+      const bytes = await readFile(new URL(`../src/${file}`, import.meta.url));
+      const actual = pngSize(bytes);
+      assert.equal(actual.width, Number(size));
+      assert.equal(actual.height, Number(size));
+    }
+  });
+}

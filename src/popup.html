@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=390">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'; connect-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Capture to Org</title>
+  <link rel="icon" href="icons/icon-32.png">
+  <link rel="stylesheet" href="popup.css">
+  <script type="module" src="popup.js"></script>
+</head>
+<body>
+  <main>
+    <header>
+      <img src="icons/icon-32.png" width="28" height="28" alt="">
+      <div>
+        <h1>Capture to Org</h1>
+        <p>Review this page, then continue in Emacs.</p>
+      </div>
+    </header>
+
+    <p id="status" role="status" aria-live="polite">Reading the active page…</p>
+    <p id="warning" class="notice" role="status" hidden></p>
+    <p id="error" class="error" role="alert" hidden></p>
+
+    <fieldset id="capture-fields" disabled>
+      <legend class="visually-hidden">Capture details</legend>
+      <div class="field">
+        <label for="title">Title</label>
+        <input id="title" type="text" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="url">Page URL</label>
+        <input id="url" type="url" autocomplete="off" spellcheck="false" required aria-describedby="url-help">
+        <p id="url-help" class="hint">Only http and https links.</p>
+      </div>
+      <div class="field">
+        <label for="selection">Selected text / context</label>
+        <textarea id="selection" rows="4" placeholder="No text selected. Add context here, or leave it empty."></textarea>
+      </div>
+      <div id="container-details" class="container-context" hidden>
+        <span class="field-label">Firefox container</span>
+        <p id="container-name"></p>
+        <p id="container-id" class="hint"></p>
+        <p class="hint">Included as text context, not restored when reopening a link.</p>
+      </div>
+    </fieldset>
+
+    <footer>
+      <p class="hint">Template <strong>p</strong> · Add your “Why” in Emacs.</p>
+      <a id="capture" class="primary-action" target="_blank" rel="noopener noreferrer" aria-disabled="true" tabindex="-1" aria-describedby="handoff-help">Open capture in Emacs</a>
+      <p id="handoff-help" class="hint">Requires an org-protocol handler on this computer. Sending a request does not confirm it was saved. Your source tab stays open.</p>
+    </footer>
+  </main>
+</body>
+</html>
